@@ -1,12 +1,12 @@
 ﻿using System;
-using Criando_Excecoes_Personalizadas.Entities;
-namespace Criando_Excecoes_Personalizadas
+using Criando_Excecoes_Personalizadas2.Entities;
+namespace Criando_Excecoes_Personalizadas2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //solução muito ruim
+            //solução ruim
             Console.Write("Room Number: ");
             var roomNumber = int.Parse(Console.ReadLine());
 
@@ -32,23 +32,17 @@ namespace Criando_Excecoes_Personalizadas
                 Console.Write("Check-out date (dd/MM/yyyy): ");
                 checkOut = DateTime.Parse(Console.ReadLine());
 
-                DateTime now = DateTime.Now;
-                if (checkIn < now || checkOut < now)
+                string error = reservation.UpdateDates(checkIn, checkOut);
+
+                if (error != null)
                 {
-                    Console.WriteLine("Error in reservation: Reservation dates for update must be futures dates");
-                }
-                else if (checkOut <= checkIn)
-                {
-                    Console.WriteLine("Error in reservation: Check-out date must be after check-in date");
+                    Console.WriteLine($"Error in reservation:{error}");
                 }
                 else
                 {
-                    reservation.UpdateDates(checkIn, checkOut);
                     Console.WriteLine($"Reservation:{reservation}");
                 }
-
             }
-
         }
     }
 }
