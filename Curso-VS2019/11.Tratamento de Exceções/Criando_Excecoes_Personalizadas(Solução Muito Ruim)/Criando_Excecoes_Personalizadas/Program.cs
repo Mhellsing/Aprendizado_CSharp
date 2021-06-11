@@ -6,7 +6,7 @@ namespace Criando_Excecoes_Personalizadas
     {
         static void Main(string[] args)
         {
-            //solução ruim
+            //solução muito ruim
             Console.Write("Room Number: ");
             var roomNumber = int.Parse(Console.ReadLine());
 
